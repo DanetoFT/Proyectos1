@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float time = 2f;
+    float cooldown = 1f;
+    public float finalTime = 2f;
+
+    public Animator shootAnim;
+    public bool canShoot = true;
+
     public bool isDead = false;
 
     Rigidbody2D rbPlayer;
@@ -30,6 +37,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+        Shooting();
     }
 
     void Movement()
@@ -54,21 +62,27 @@ public class PlayerController : MonoBehaviour
         {
             Saltar();
         }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Atacar();
-        }
     }
 
-    public void Atacar()
+    void CoolDown()
     {
-        //Ataque
-        if (isOnGround)
+        time = Time.time + cooldown;
+    }
+
+    void Shooting()
+    {
+        if(isOnGround == true)
         {
-            animatorPlayer.SetTrigger("Attack");
+            canShoot = true;
         }
 
+        if (Input.GetMouseButtonDown(0) && canShoot)
+        {
+            time = 0f;
+            CoolDown();
+            shootAnim.SetTrigger("Shoot");
+            canShoot = false;
+        }
     }
 
     public void Saltar()
@@ -91,8 +105,6 @@ public class PlayerController : MonoBehaviour
 
             animatorPlayer.SetBool("Jumping", false);
         }
-
-
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -102,15 +114,6 @@ public class PlayerController : MonoBehaviour
             isOnGround = false;
 
             animatorPlayer.SetBool("Jumping", true);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (vidaActual < vidaMax)
-        {
-            vidaActual += cura;
-            Debug.Log("Vida actual: " + vidaActual);
         }
     }
 }
