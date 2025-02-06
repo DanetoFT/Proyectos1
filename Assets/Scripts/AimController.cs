@@ -2,9 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using Unity.VisualScripting;
+using TarodevController;
 
 public class AimController : MonoBehaviour
 {
+    [SerializeField] private ScriptableStats _stats;
+
+    public Rigidbody2D rb;
+
+    NewPlayerController player;
+
+    public Vector3 muzzle;
+
+    public float cooldownTime;
+    bool isCooldown = false;
+
+    public Animator shootAnim;
+
     private Transform aimTransform;
     public Transform playerTransform;
 
@@ -20,6 +35,7 @@ public class AimController : MonoBehaviour
     void Update()
     {
         MovimientoArma();
+        Shooting();
     }
 
     public void MovimientoArma()
@@ -31,6 +47,8 @@ public class AimController : MonoBehaviour
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
         angulo = aimDirection;
+
+        muzzle = UtilsClass.GetMouseWorldPosition(); ;
 
         if(angle > 90)
         {
@@ -46,6 +64,33 @@ public class AimController : MonoBehaviour
         }
 
         transform.position = playerTransform.position;
+    }
+
+    void Shooting()
+    {
+        if (Input.GetMouseButtonDown(0) && !isCooldown)
+        {
+            StartCoroutine(Cooldown());
+            ImpulsoDisparo();
+
+            shootAnim.SetTrigger("Shoot");
+        }
+    }
+
+    public void ImpulsoDisparo()
+    {
+        Vector2 direction = (-muzzle + transform.position);
+
+        Vector2 knockback = direction * 1000f;
+
+        rb.AddForce(knockback, ForceMode2D.Force);
+    }
+
+    public IEnumerator Cooldown()
+    {
+        isCooldown = true;
+        yield return new WaitForSeconds(cooldownTime);
+        isCooldown = false;
     }
 
 }

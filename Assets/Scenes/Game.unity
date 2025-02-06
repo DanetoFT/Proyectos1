@@ -635,6 +635,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ead801a407cff4d8e605bca5f1b420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stats: {fileID: 0}
+  rb: {fileID: 8023516128432515846}
+  muzzle: {x: 0, y: 0, z: 0}
+  cooldownTime: 0.7
+  shootAnim: {fileID: 1760385732}
   playerTransform: {fileID: 1676638948}
   angulo: {x: 0, y: 0, z: 0}
 --- !u!95 &1760385732
@@ -808,6 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: 6188da35989036841bafafa8ecd5a3c6, type: 2}
+  _rb: {fileID: 8023516128432515846}
 --- !u!70 &8023516128432515849
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -817,7 +823,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 8023516128432515845}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 922ac4a82f70ad94e92de0654233799b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
