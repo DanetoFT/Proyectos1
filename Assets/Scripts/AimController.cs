@@ -8,10 +8,12 @@ public class AimController : MonoBehaviour
     private Transform aimTransform;
     public Transform playerTransform;
 
+    public Vector3 angulo;
 
     private void Awake()
     {
         aimTransform = transform;
+
     }
 
     // Update is called once per frame
@@ -27,6 +29,8 @@ public class AimController : MonoBehaviour
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
+
+        angulo = aimDirection;
 
         if(angle > 90)
         {

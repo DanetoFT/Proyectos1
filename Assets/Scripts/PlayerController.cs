@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeMonkey.Utils;
 
 public class PlayerController : MonoBehaviour
 {
-    public float time = 2f;
-    float cooldown = 1f;
-    public float finalTime = 2f;
+
+    public float cooldownTime;
+    bool isCooldown = false;
 
     public Animator shootAnim;
     public bool canShoot = true;
@@ -64,11 +65,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CoolDown()
-    {
-        time = Time.time + cooldown;
-    }
-
     void Shooting()
     {
         if(isOnGround == true)
@@ -76,13 +72,29 @@ public class PlayerController : MonoBehaviour
             canShoot = true;
         }
 
-        if (Input.GetMouseButtonDown(0) && canShoot)
+        if (Input.GetMouseButtonDown(0) && canShoot && !isCooldown)
         {
-            time = 0f;
-            CoolDown();
+            StartCoroutine(Cooldown());
+
+            ImpulsoDisparo();
+
             shootAnim.SetTrigger("Shoot");
             canShoot = false;
         }
+    }
+
+    public void ImpulsoDisparo()
+    {
+        Vector3 mousePos = UtilsClass.GetMouseWorldPosition();
+
+        rbPlayer.velocity = new Vector3(-mousePos.x, -mousePos.y, 0) * jumpForce * .3f;
+    }
+
+    public IEnumerator Cooldown()
+    {
+        isCooldown = true;
+        yield return new WaitForSeconds(cooldownTime);
+        isCooldown = false;
     }
 
     public void Saltar()
