@@ -7,7 +7,6 @@ using TarodevController;
 
 public class AimController : MonoBehaviour
 {
-    [SerializeField] private ScriptableStats _stats;
 
     public Rigidbody2D rb;
 
@@ -81,7 +80,7 @@ public class AimController : MonoBehaviour
     {
         Vector2 direction = (-muzzle + transform.position);
 
-        Vector2 knockback = direction * 1000f;
+        Vector2 knockback = direction * 10f;
 
         rb.AddForce(knockback, ForceMode2D.Force);
     }
