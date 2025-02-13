@@ -10,9 +10,7 @@ public class AimController : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    NewPlayerController player;
-
-    public Vector3 muzzle;
+    public Transform muzzle;
 
     public float cooldownTime;
     bool isCooldown = false;
@@ -47,7 +45,7 @@ public class AimController : MonoBehaviour
 
         angulo = aimDirection;
 
-        muzzle = UtilsClass.GetMouseWorldPosition(); ;
+        
 
         if(angle > 90)
         {
@@ -78,11 +76,15 @@ public class AimController : MonoBehaviour
 
     public void ImpulsoDisparo()
     {
-        Vector2 direction = (-muzzle + transform.position);
 
-        Vector2 knockback = direction * 10f;
+        //Vector2 direction = (-muzzle + transform.position);
 
-        rb.AddForce(knockback, ForceMode2D.Force);
+        //Vector2 knockback = direction * 10f;
+
+        Vector2 impulso = (-muzzle.position + transform.position) * 10f;
+        Vector2 horizontal = (-transform.position + muzzle.position) * 10f;
+
+        rb.AddForce(impulso, ForceMode2D.Impulse);
     }
 
     public IEnumerator Cooldown()

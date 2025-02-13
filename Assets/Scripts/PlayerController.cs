@@ -49,11 +49,16 @@ public class PlayerController : MonoBehaviour
         if (moveHorizontal > 0)
         {
             transform.localScale = new Vector2(1, 1);
+            animatorPlayer.SetFloat("Speed", 1f);
         }
-
-        if (moveHorizontal < 0)
+        else if (moveHorizontal < 0)
         {
             transform.localScale = new Vector2(-1, 1);
+            animatorPlayer.SetFloat("Speed", 1f);
+        }
+        else
+        {
+            animatorPlayer.SetFloat("Speed", 0f);
         }
 
         rbPlayer.velocity = new Vector2(moveHorizontal * speed, rbPlayer.velocity.y);
