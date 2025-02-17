@@ -9,6 +9,8 @@ public class AimController : MonoBehaviour
 {
     public float impulseForce;
 
+    public float apuntado;
+
     public Animator escopeta;
 
     public Rigidbody2D rb;
@@ -48,7 +50,7 @@ public class AimController : MonoBehaviour
 
         angulo = aimDirection;
 
-        
+        apuntado = angle;
 
         if(angle > 90)
         {

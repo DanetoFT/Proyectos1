@@ -5,6 +5,7 @@ using CodeMonkey.Utils;
 
 public class PlayerController : MonoBehaviour
 {
+    public AimController aim;
 
     public Animator shootAnim;
     public bool canShoot = true;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+        GiroApuntado();
         //Shooting();
     }
 
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector2(-1, 1);
             animatorPlayer.SetFloat("Speed", 1f);
         }
-        else
+        else if (moveHorizontal == 0)
         {
             animatorPlayer.SetFloat("Speed", 0f);
         }
@@ -65,6 +67,19 @@ public class PlayerController : MonoBehaviour
         {
             Saltar();
         }
+    }
+
+    void GiroApuntado()
+    {
+        if (aim.apuntado < 90f && aim.apuntado > -90f)
+        {
+            transform.localScale = new Vector2(1, 1);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        transform.localScale = new Vector2(-1, 1);
     }
 
     /*void Shooting()
@@ -85,7 +100,7 @@ public class PlayerController : MonoBehaviour
         }
     }*/
 
-    
+
 
     public void Saltar()
     {
