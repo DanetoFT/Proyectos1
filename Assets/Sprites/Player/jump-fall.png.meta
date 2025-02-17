@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f181ecb6cdc96b84a83a7c7df43df285
+guid: 0b460965635bb334c83156c9f32a9b7d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,169 +97,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk-ExploradorBien_0
+      name: jump-fall_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 1600
         height: 1600
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7eb51b3562c45ac4e8f0806943f0b337
-      internalID: 722059711
+      spriteID: 12b573e077daad34b81e98e72374ca2c
+      internalID: 750812919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk-ExploradorBien_1
+      name: jump-fall_1
       rect:
         serializedVersion: 2
-        x: 1600
+        x: 1604
         y: 0
         width: 1600
         height: 1600
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a67f3decd400e5a46888df3b1960fca7
-      internalID: 1318577456
+      spriteID: c923912767fc749469b2679bfda4a15a
+      internalID: -1637841749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk-ExploradorBien_2
+      name: jump-fall_2
       rect:
         serializedVersion: 2
         x: 3200
         y: 0
         width: 1600
         height: 1600
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f17e1e34fb9c93a43b73d79a8f871b5c
-      internalID: -968354117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk-ExploradorBien_3
-      rect:
-        serializedVersion: 2
-        x: 4800
-        y: 0
-        width: 1600
-        height: 1600
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b377f6e3bdfdc24eacd68e8c4d09249
-      internalID: 200665214
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk-ExploradorBien_4
-      rect:
-        serializedVersion: 2
-        x: 6400
-        y: 0
-        width: 1600
-        height: 1600
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 26a34d1d05b449a42a7a5a4e49a46006
-      internalID: -2123840364
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk-ExploradorBien_5
-      rect:
-        serializedVersion: 2
-        x: 8000
-        y: 0
-        width: 1600
-        height: 1600
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eba1f49b392ec1948a482eea975f8c07
-      internalID: 475723836
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk-ExploradorBien_6
-      rect:
-        serializedVersion: 2
-        x: 9600
-        y: 0
-        width: 1600
-        height: 1600
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b256d46a2837aba46b8fb02b9bf0ab9d
-      internalID: -875249078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk-ExploradorBien_7
-      rect:
-        serializedVersion: 2
-        x: 11200
-        y: 0
-        width: 1600
-        height: 1600
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4ee5273bd1f7b1d48b9510716b542adb
-      internalID: 983403359
+      spriteID: d441d25faab3f664f87084d736da9f21
+      internalID: 1498845611
       vertices: []
       indices: 
       edges: []
@@ -275,14 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      walk-ExploradorBien_0: 722059711
-      walk-ExploradorBien_1: 1318577456
-      walk-ExploradorBien_2: -968354117
-      walk-ExploradorBien_3: 200665214
-      walk-ExploradorBien_4: -2123840364
-      walk-ExploradorBien_5: 475723836
-      walk-ExploradorBien_6: -875249078
-      walk-ExploradorBien_7: 983403359
+      jump-fall_0: 750812919
+      jump-fall_1: -1637841749
+      jump-fall_2: 1498845611
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

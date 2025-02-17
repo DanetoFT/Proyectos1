@@ -94,8 +94,8 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = false;
             rbPlayer.velocity = new Vector2(moveHorizontal, jumpForce);
-            animatorPlayer.SetTrigger("Jump");
             animatorPlayer.SetBool("Jumping", true);
+
         }
     }
 
