@@ -6,9 +6,6 @@ using CodeMonkey.Utils;
 public class PlayerController : MonoBehaviour
 {
 
-    public float cooldownTime;
-    bool isCooldown = false;
-
     public Animator shootAnim;
     public bool canShoot = true;
 
@@ -38,7 +35,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
-        Shooting();
+        //Shooting();
     }
 
     void Movement()
@@ -62,7 +59,7 @@ public class PlayerController : MonoBehaviour
         }
 
         rbPlayer.velocity = new Vector2(moveHorizontal * speed, rbPlayer.velocity.y);
-        animatorPlayer.SetFloat("Move", Mathf.Abs(moveHorizontal));
+        //animatorPlayer.SetFloat("Move", Mathf.Abs(moveHorizontal));
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -70,7 +67,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Shooting()
+    /*void Shooting()
     {
         if(isOnGround == true)
         {
@@ -86,21 +83,9 @@ public class PlayerController : MonoBehaviour
             shootAnim.SetTrigger("Shoot");
             canShoot = false;
         }
-    }
+    }*/
 
-    public void ImpulsoDisparo()
-    {
-        Vector3 mousePos = UtilsClass.GetMouseWorldPosition();
-
-        rbPlayer.velocity = new Vector3(-mousePos.x, -mousePos.y, 0) * jumpForce * .3f;
-    }
-
-    public IEnumerator Cooldown()
-    {
-        isCooldown = true;
-        yield return new WaitForSeconds(cooldownTime);
-        isCooldown = false;
-    }
+    
 
     public void Saltar()
     {

@@ -7,6 +7,9 @@ using TarodevController;
 
 public class AimController : MonoBehaviour
 {
+    public float impulseForce;
+
+    public Animator escopeta;
 
     public Rigidbody2D rb;
 
@@ -71,20 +74,15 @@ public class AimController : MonoBehaviour
             ImpulsoDisparo();
 
             shootAnim.SetTrigger("Shoot");
+            escopeta.SetTrigger("Shoot");
         }
     }
 
     public void ImpulsoDisparo()
     {
+        Vector3 mousePos = UtilsClass.GetMouseWorldPosition();
 
-        //Vector2 direction = (-muzzle + transform.position);
-
-        //Vector2 knockback = direction * 10f;
-
-        Vector2 impulso = (-muzzle.position + transform.position) * 10f;
-        Vector2 horizontal = (-transform.position + muzzle.position) * 10f;
-
-        rb.AddForce(impulso, ForceMode2D.Impulse);
+        rb.velocity = new Vector3(-mousePos.x, -mousePos.y, 0) * impulseForce * .3f;
     }
 
     public IEnumerator Cooldown()
