@@ -74,17 +74,30 @@ public class AimController : MonoBehaviour
         {
             StartCoroutine(Cooldown());
             ImpulsoDisparo();
-
+            //Impulso2();
             shootAnim.SetTrigger("Shoot");
             escopeta.SetTrigger("Shoot");
         }
     }
 
+    void Impulso2()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0;
+
+        Vector2 knockbackDirection = (transform.position - mousePosition).normalized;
+
+        rb.velocity = knockbackDirection * impulseForce;
+    }
+
     public void ImpulsoDisparo()
     {
         Vector3 mousePos = UtilsClass.GetMouseWorldPosition();
+        mousePos.z = 0;
 
         rb.velocity = new Vector3(-mousePos.x, -mousePos.y, 0) * impulseForce * .3f;
+
+        //rb.AddForce(new Vector2(-mousePos.x, -mousePos.y), ForceMode2D.Impulse);
     }
 
     public IEnumerator Cooldown()

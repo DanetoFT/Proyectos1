@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
 
+        // Guardamos la velocidad vertical (Y) para no modificarla al aplicar el impulso
+        float currentYVelocity = rbPlayer.velocity.y;
 
         if (moveHorizontal > 0)
         {
@@ -60,8 +62,8 @@ public class PlayerController : MonoBehaviour
             animatorPlayer.SetFloat("Speed", 0f);
         }
 
-        rbPlayer.velocity = new Vector2(moveHorizontal * speed, rbPlayer.velocity.y);
-        //animatorPlayer.SetFloat("Move", Mathf.Abs(moveHorizontal));
+        // Solo modificamos el valor de X, manteniendo el valor de Y intacto
+        rbPlayer.velocity = new Vector2(moveHorizontal * speed, currentYVelocity);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
