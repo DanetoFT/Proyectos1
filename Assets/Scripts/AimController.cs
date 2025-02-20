@@ -24,6 +24,9 @@ public class AimController : MonoBehaviour
 
     private Transform aimTransform;
     public Transform playerTransform;
+    public Transform shootPoint;
+    public float rango = 10f;
+    public GameObject bullet;
 
     public Vector3 angulo;
 
@@ -73,8 +76,11 @@ public class AimController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isCooldown)
         {
             StartCoroutine(Cooldown());
-            ImpulsoDisparo();
-            //Impulso2();
+
+            Instantiate(bullet, shootPoint.position, Quaternion.identity);
+
+            //ImpulsoDisparo();
+            Impulso2();
             shootAnim.SetTrigger("Shoot");
             escopeta.SetTrigger("Shoot");
         }
@@ -87,7 +93,11 @@ public class AimController : MonoBehaviour
 
         Vector2 knockbackDirection = (transform.position - mousePosition).normalized;
 
-        rb.velocity = knockbackDirection * impulseForce;
+        Debug.Log(knockbackDirection);
+
+        //rb.velocity = knockbackDirection * impulseForce;
+
+        rb.AddForce(knockbackDirection * 50, ForceMode2D.Impulse);
     }
 
     public void ImpulsoDisparo()
@@ -95,9 +105,9 @@ public class AimController : MonoBehaviour
         Vector3 mousePos = UtilsClass.GetMouseWorldPosition();
         mousePos.z = 0;
 
-        rb.velocity = new Vector3(-mousePos.x, -mousePos.y, 0) * impulseForce * .3f;
+        //rb.velocity = new Vector3(-mousePos.x, -mousePos.y, 0) * impulseForce * .3f;
 
-        //rb.AddForce(new Vector2(-mousePos.x, -mousePos.y), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(-mousePos.x, -mousePos.y) * 50, ForceMode2D.Impulse);
     }
 
     public IEnumerator Cooldown()
