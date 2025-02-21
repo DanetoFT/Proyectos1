@@ -542,6 +542,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &453952483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453952484}
+  m_Layer: 0
+  m_Name: Disparo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &453952484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453952483}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.459, y: 0.084, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1760385730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &959438394
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,6 +766,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 62739250}
+  - {fileID: 453952484}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1760385731
@@ -749,7 +781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ead801a407cff4d8e605bca5f1b420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impulseForce: 10
+  impulseForce: 15
   apuntado: 0
   escopeta: {fileID: 62739252}
   rb: {fileID: 1957269664}
@@ -757,6 +789,9 @@ MonoBehaviour:
   cooldownTime: 0.8
   shootAnim: {fileID: 1760385732}
   playerTransform: {fileID: 1676638948}
+  shootPoint: {fileID: 453952484}
+  rango: 100
+  bullet: {fileID: 1144850644006376972, guid: b1e0e9fe4ce6a264ebecf7782e80af20, type: 3}
   angulo: {x: 0, y: 0, z: 0}
 --- !u!95 &1760385732
 Animator:
@@ -994,8 +1029,8 @@ MonoBehaviour:
   canShoot: 1
   isDead: 0
   animatorPlayer: {fileID: 1957269662}
-  speed: 9
-  jumpForce: 12
+  speed: 10
+  jumpForce: 15
   vidaMax: 0
   vidaActual: 0
   cura: 0

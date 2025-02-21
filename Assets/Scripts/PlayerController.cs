@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     float moveHorizontal;
     public int cura;
 
+    SpriteRenderer sprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
         vidaActual = vidaMax;
         rbPlayer = GetComponent<Rigidbody2D>();
         animatorPlayer = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -44,26 +47,34 @@ public class PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
 
+        if (isOnGround)
+        {
+            transform.Translate(Vector2.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
+        }
+
         // Guardamos la velocidad vertical (Y) para no modificarla al aplicar el impulso
         float currentYVelocity = rbPlayer.velocity.y;
 
         if (moveHorizontal > 0)
         {
-            transform.localScale = new Vector2(1, 1);
+            sprite.flipX = false;
+            //transform.localScale = new Vector2(1, 1);
             animatorPlayer.SetFloat("Speed", 1f);
         }
         else if (moveHorizontal < 0)
         {
-            transform.localScale = new Vector2(-1, 1);
+            sprite.flipX = true;
+            //transform.localScale = new Vector2(-1, 1);
             animatorPlayer.SetFloat("Speed", 1f);
         }
         else if (moveHorizontal == 0)
         {
+            sprite.flipX = false;
             animatorPlayer.SetFloat("Speed", 0f);
         }
 
         // Solo modificamos el valor de X, manteniendo el valor de Y intacto
-        rbPlayer.velocity = new Vector2(moveHorizontal * speed, currentYVelocity);
+        //rbPlayer.velocity = new Vector2(moveHorizontal * speed, currentYVelocity);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -75,34 +86,22 @@ public class PlayerController : MonoBehaviour
     {
         if (aim.apuntado < 90f && aim.apuntado > -90f)
         {
+            //sprite.flipX = false;
             transform.localScale = new Vector2(1, 1);
         }
+
+        /*if (aim.apuntado > 90f && aim.apuntado < -90f)
+        {
+            sprite.flipX = true;
+            //transform.localScale = new Vector2(1, 1);
+        }*/
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        //sprite.flipX = true;
         transform.localScale = new Vector2(-1, 1);
     }
-
-    /*void Shooting()
-    {
-        if(isOnGround == true)
-        {
-            canShoot = true;
-        }
-
-        if (Input.GetMouseButtonDown(0) && canShoot && !isCooldown)
-        {
-            StartCoroutine(Cooldown());
-
-            ImpulsoDisparo();
-
-            shootAnim.SetTrigger("Shoot");
-            canShoot = false;
-        }
-    }*/
-
-
 
     public void Saltar()
     {

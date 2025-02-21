@@ -28,12 +28,14 @@ public class AimController : MonoBehaviour
     public float rango = 10f;
     public GameObject bullet;
 
+    SpriteRenderer sprite;
+
     public Vector3 angulo;
 
     private void Awake()
     {
         aimTransform = transform;
-
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -77,6 +79,8 @@ public class AimController : MonoBehaviour
         {
             StartCoroutine(Cooldown());
 
+            
+
             Instantiate(bullet, shootPoint.position, Quaternion.identity);
 
             //ImpulsoDisparo();
@@ -90,14 +94,15 @@ public class AimController : MonoBehaviour
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
+        Vector3 mouseRotation = mousePosition - transform.position;
 
         Vector2 knockbackDirection = (transform.position - mousePosition).normalized;
 
         Debug.Log(knockbackDirection);
 
-        //rb.velocity = knockbackDirection * impulseForce;
+        rb.velocity += knockbackDirection * impulseForce;
 
-        rb.AddForce(knockbackDirection * 50, ForceMode2D.Impulse);
+        //rb.AddForce(knockbackDirection * 50, ForceMode2D.Impulse);
     }
 
     public void ImpulsoDisparo()
@@ -105,9 +110,9 @@ public class AimController : MonoBehaviour
         Vector3 mousePos = UtilsClass.GetMouseWorldPosition();
         mousePos.z = 0;
 
-        //rb.velocity = new Vector3(-mousePos.x, -mousePos.y, 0) * impulseForce * .3f;
+        rb.velocity = new Vector3(-mousePos.x, -mousePos.y, 0) * impulseForce * .3f;
 
-        rb.AddForce(new Vector2(-mousePos.x, -mousePos.y) * 50, ForceMode2D.Impulse);
+        //rb.AddForce(new Vector2(-mousePos.x, -mousePos.y) * 50, ForceMode2D.Impulse);
     }
 
     public IEnumerator Cooldown()
