@@ -4,6 +4,7 @@ using UnityEngine;
 using CodeMonkey.Utils;
 using Unity.VisualScripting;
 using TarodevController;
+using System.ComponentModel;
 
 public class AimController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class AimController : MonoBehaviour
 
     public float cooldownTime;
     bool isCooldown = false;
+    public bool impulse;
 
     public Animator shootAnim;
 
@@ -28,12 +30,17 @@ public class AimController : MonoBehaviour
     public float rango = 10f;
     public GameObject bullet;
 
+    public bool stand;
+
     SpriteRenderer sprite;
+
+    public PlayerController player;
 
     public Vector3 angulo;
 
     private void Awake()
     {
+        impulse = false;
         aimTransform = transform;
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -75,16 +82,25 @@ public class AimController : MonoBehaviour
 
     void Shooting()
     {
-        if (Input.GetMouseButtonDown(0) && !isCooldown)
+        if (Input.GetMouseButtonDown(0) && !isCooldown && !player.isOnGround)
         {
             StartCoroutine(Cooldown());
 
-            
+            impulse = true;
 
             Instantiate(bullet, shootPoint.position, Quaternion.identity);
 
             //ImpulsoDisparo();
             Impulso2();
+            shootAnim.SetTrigger("Shoot");
+            escopeta.SetTrigger("Shoot");
+        }
+        else if (Input.GetMouseButtonDown(0) && !isCooldown && player.isOnGround)
+        {
+            StartCoroutine(Cooldown());
+
+            Instantiate(bullet, shootPoint.position, Quaternion.identity);
+
             shootAnim.SetTrigger("Shoot");
             escopeta.SetTrigger("Shoot");
         }
@@ -120,6 +136,7 @@ public class AimController : MonoBehaviour
         isCooldown = true;
         yield return new WaitForSeconds(cooldownTime);
         isCooldown = false;
+        impulse = false;
     }
 
 }
