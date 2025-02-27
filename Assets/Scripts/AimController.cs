@@ -8,6 +8,7 @@ using System.ComponentModel;
 
 public class AimController : MonoBehaviour
 {
+
     public float impulseForce;
 
     public float apuntado;

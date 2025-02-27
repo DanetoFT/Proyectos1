@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public int cura;
     public float fallMultiplier;
     Vector2 vecGravity;
+    public float move;
 
     SpriteRenderer sprite;
 
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        move = moveHorizontal;
 
         //transform.Translate(Vector2.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
 
