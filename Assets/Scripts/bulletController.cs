@@ -29,4 +29,14 @@ public class bulletController : MonoBehaviour
     {
         
     }
+
+    void Destruir()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Invoke("Destruir", .5f);
+    }
 }

@@ -19,9 +19,12 @@ public class MosquitoController : MonoBehaviour
     public bool attacking;
     Vector2 suma;
 
+    public bool isDead;
+
     // Start is called before the first frame update
     void Start()
     {
+        isDead = false;
         chase = false;
         suma = new Vector2(1, 1);
         rb = GetComponent<Rigidbody2D>();
@@ -32,17 +35,17 @@ public class MosquitoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(chase == true && !attacking)
+        if(chase == true && !attacking && !isDead)
         {
             Chase();
         }
-        else if (chase == false && !attacking)
+        else if (chase == false && !attacking && !isDead)
         {
             ReturnStart();
         }
         Flip();
 
-        if (attacking == true)
+        if (attacking == true && !isDead)
         {
             Attack();
         }
@@ -67,7 +70,6 @@ public class MosquitoController : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         anim.SetBool("Angry", true);
-
     }
 
     void Attack()
@@ -91,8 +93,64 @@ public class MosquitoController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void Destruir()
     {
-        attacking = true;
+        Destroy(gameObject);
+    }
+    void Death()
+    {
+        //rb.bodyType = RigidbodyType2D.Dynamic;
+        //collider.isTrigger = false;
+        chase = false;
+        attacking = false;
+
+        anim.SetTrigger("Death");
+
+        Invoke("Destruir", .3f);
+    }
+
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            attacking = true;
+        }
+        else if(collision.gameObject.tag == "Bullet")
+        {
+            isDead = true;
+
+            Vector3 bulletPos = collision.transform.position;
+            bulletPos.z = 0;
+            Vector3 bulletRotation = bulletPos - transform.position;
+
+            Vector2 knockbackDirection = (transform.position - bulletPos).normalized;
+
+            rb.velocity = knockbackDirection * 15;
+            
+            Death();
+        }
+    }*/
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.tag == "Player")
+        {
+            attacking = true;
+        }
+        else if (collision.gameObject.tag == "Bullet")
+        {
+            isDead = true;
+
+            /*Vector3 bulletPos = collision.transform.position;
+            bulletPos.z = 0;
+            Vector3 bulletRotation = bulletPos - transform.position;
+
+            Vector2 knockbackDirection = (transform.position - bulletPos).normalized;
+
+            rb.velocity = knockbackDirection * 15;
+            */
+            Death();
+        }
     }
 }

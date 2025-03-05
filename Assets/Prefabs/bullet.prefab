@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: -5410399240903268897}
   - component: {fileID: 1940288807393322814}
   - component: {fileID: 8846532883185534487}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 159317493
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.99607843, g: 0.51648253, b: 0.050980367, a: 1}
@@ -173,7 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8282972703658015866}
   - component: {fileID: 6306388881117256153}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BulletTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,10 +234,10 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 159317493
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Time: 0.6
+  m_Time: 0.5
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
