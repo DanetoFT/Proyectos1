@@ -81,6 +81,19 @@ public class MosquitoController : MonoBehaviour
         transform.position = new Vector2(player.transform.position.x +1.5f, player.transform.position.y +1.3f);
     }
 
+    public void Damage()
+    {
+        playerController.vidaActual--;
+        Debug.Log(playerController.vidaActual);
+    }
+
+    public IEnumerator Damager()
+    {
+        Damage();
+
+        yield return new WaitForSeconds(1f);
+    }
+
     void Flip()
     {
         if(transform.position.x > player.transform.position.x)
@@ -104,41 +117,22 @@ public class MosquitoController : MonoBehaviour
         chase = false;
         attacking = false;
 
+        CancelInvoke();
+
         anim.SetTrigger("Death");
 
         Invoke("Destruir", .3f);
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             attacking = true;
+            //StartCoroutine(Damager());
+            InvokeRepeating("Damage", 1f, 1f);
         }
         else if(collision.gameObject.tag == "Bullet")
-        {
-            isDead = true;
-
-            Vector3 bulletPos = collision.transform.position;
-            bulletPos.z = 0;
-            Vector3 bulletRotation = bulletPos - transform.position;
-
-            Vector2 knockbackDirection = (transform.position - bulletPos).normalized;
-
-            rb.velocity = knockbackDirection * 15;
-            
-            Death();
-        }
-    }*/
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        if (collision.gameObject.tag == "Player")
-        {
-            attacking = true;
-        }
-        else if (collision.gameObject.tag == "Bullet")
         {
             isDead = true;
 
@@ -150,6 +144,24 @@ public class MosquitoController : MonoBehaviour
 
             rb.velocity = knockbackDirection * 15;
             */
+            Death();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            isDead = true;
+
+            /*Vector3 bulletPos = collision.transform.position;
+            bulletPos.z = 0;
+            Vector3 bulletRotation = bulletPos - transform.position;
+
+            Vector2 knockbackDirection = (transform.position - bulletPos).normalized;
+
+            rb.velocity = knockbackDirection * 15;*/
+            
             Death();
         }
     }
