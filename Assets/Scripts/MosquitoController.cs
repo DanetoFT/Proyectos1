@@ -85,6 +85,31 @@ public class MosquitoController : MonoBehaviour
     {
         playerController.vidaActual--;
         Debug.Log(playerController.vidaActual);
+
+        if (playerController.vidaActual == 5)
+        {
+            playerController.vidas[0].SetActive(false);
+        }
+        else if (playerController.vidaActual == 4)
+        {
+            playerController.vidas[1].SetActive(false);
+        }
+        else if (playerController.vidaActual == 3)
+        {
+            playerController.vidas[2].SetActive(false);
+        }
+        else if (playerController.vidaActual == 2)
+        {
+            playerController.vidas[3].SetActive(false);
+        }
+        else if (playerController.vidaActual == 1)
+        {
+            playerController.vidas[4].SetActive(false);
+        }
+        else if (playerController.vidaActual <= 0)
+        {
+            playerController.vidas[5].SetActive(false);
+        }
     }
 
     public IEnumerator Damager()

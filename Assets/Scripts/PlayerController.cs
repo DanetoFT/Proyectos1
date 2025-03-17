@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     SpriteRenderer sprite;
 
+    public GameObject[] vidas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -128,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Trap")
         {
             isOnGround = true;
 
