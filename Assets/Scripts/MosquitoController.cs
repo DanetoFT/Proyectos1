@@ -13,7 +13,7 @@ public class MosquitoController : MonoBehaviour
     public Transform startingPoint;
 
     Rigidbody2D rb;
-    CircleCollider2D collider;
+    CircleCollider2D cCollider;
     Animator anim;
 
     public bool attacking;
@@ -28,7 +28,7 @@ public class MosquitoController : MonoBehaviour
         chase = false;
         suma = new Vector2(1, 1);
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<CircleCollider2D>();
+        cCollider = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
     }
 
@@ -77,7 +77,7 @@ public class MosquitoController : MonoBehaviour
         anim.SetTrigger("Attack");
         chase = false;
         rb.bodyType = RigidbodyType2D.Static;
-        collider.isTrigger = true;
+        cCollider.isTrigger = true;
         transform.position = new Vector2(player.transform.position.x +1.5f, player.transform.position.y +1.3f);
     }
 
