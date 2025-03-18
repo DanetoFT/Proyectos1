@@ -16,6 +16,8 @@ public class MosquitoController : MonoBehaviour
     CircleCollider2D cCollider;
     Animator anim;
 
+    Animator playerAnim;
+
     public bool attacking;
     Vector2 suma;
 
@@ -85,31 +87,9 @@ public class MosquitoController : MonoBehaviour
     {
         playerController.vidaActual--;
         Debug.Log(playerController.vidaActual);
+        playerAnim.SetTrigger("Damage");
 
-        if (playerController.vidaActual == 5)
-        {
-            playerController.vidas[0].SetActive(false);
-        }
-        else if (playerController.vidaActual == 4)
-        {
-            playerController.vidas[1].SetActive(false);
-        }
-        else if (playerController.vidaActual == 3)
-        {
-            playerController.vidas[2].SetActive(false);
-        }
-        else if (playerController.vidaActual == 2)
-        {
-            playerController.vidas[3].SetActive(false);
-        }
-        else if (playerController.vidaActual == 1)
-        {
-            playerController.vidas[4].SetActive(false);
-        }
-        else if (playerController.vidaActual <= 0)
-        {
-            playerController.vidas[5].SetActive(false);
-        }
+        playerController.UpdatedLifeBar(playerController.vidaActual);
     }
 
     public IEnumerator Damager()
@@ -154,6 +134,7 @@ public class MosquitoController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             attacking = true;
+            playerAnim = collision.gameObject.GetComponent<Animator>();
             //StartCoroutine(Damager());
             InvokeRepeating("Damage", 1f, 1f);
         }

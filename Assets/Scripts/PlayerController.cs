@@ -128,6 +128,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void UpdatedLifeBar(int life)
+    {
+        vidas[life].SetActive(false);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Trap")

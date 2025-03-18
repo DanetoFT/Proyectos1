@@ -10,6 +10,8 @@ public class trapController : MonoBehaviour
 
     bool damaged;
 
+    public float tiempoCaida;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,22 +20,15 @@ public class trapController : MonoBehaviour
         damaged = false;
     }
 
-    public void Destruir()
-    {
-        Destroy(this);
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Invoke("Destruir", .5f);
-
-
         if (collision.gameObject.tag == "Player" && !damaged)
         {
-            playerController.vidaActual -= 3;
+            playerController.vidaActual -= 1;
+            playerController.UpdatedLifeBar(playerController.vidaActual);
             Debug.Log(playerController.vidaActual);
             damaged = true;
-            rb.bodyType = RigidbodyType2D.Static;
         }
     }
 
@@ -41,6 +36,14 @@ public class trapController : MonoBehaviour
     {
         rb.bodyType = RigidbodyType2D.Dynamic;
 
+        Invoke("CambioRb", tiempoCaida);
+
         animator.SetTrigger("Cuerda");
+    }
+
+    public void CambioRb()
+    {
+        rb.bodyType = RigidbodyType2D.Static;
+        damaged = true;
     }
 }
