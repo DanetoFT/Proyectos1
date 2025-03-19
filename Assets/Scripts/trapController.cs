@@ -7,6 +7,9 @@ public class trapController : MonoBehaviour
     public PlayerController playerController;
     Rigidbody2D rb;
     Animator animator;
+    Animator playerAnimator;
+
+    bool isActivated;
 
     bool damaged;
 
@@ -15,6 +18,7 @@ public class trapController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isActivated = false;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         damaged = false;
@@ -25,7 +29,11 @@ public class trapController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && !damaged)
         {
+            playerAnimator = collision.gameObject.GetComponent<Animator>();
             playerController.vidaActual -= 1;
+
+            playerAnimator.SetTrigger("Damage");
+
             playerController.UpdatedLifeBar(playerController.vidaActual);
             Debug.Log(playerController.vidaActual);
             damaged = true;
@@ -34,6 +42,17 @@ public class trapController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isActivated)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+
+            Invoke("CambioRb", tiempoCaida);
+
+            animator.SetTrigger("Cuerda");
+
+            isActivated = false;
+        }
+
         rb.bodyType = RigidbodyType2D.Dynamic;
 
         Invoke("CambioRb", tiempoCaida);

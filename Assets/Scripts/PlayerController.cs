@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
         }
         GiroApuntado();
         //Shooting();
+
+        if (vidaActual <= 0)
+        {
+
+        }
     }
 
     void Movement()
