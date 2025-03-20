@@ -53,11 +53,11 @@ TagManager:
   - name: Arboles1
     uniqueID: 1937853071
     locked: 0
-  - name: Suelo
-    uniqueID: 1321849227
-    locked: 0
   - name: Player
     uniqueID: 842281205
+    locked: 0
+  - name: Suelo
+    uniqueID: 1321849227
     locked: 0
   - name: Arboles2
     uniqueID: 159317493

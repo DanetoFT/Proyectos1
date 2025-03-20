@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     Vector2 vecGravity;
     public float move;
 
+    public Transform playerTransform;
+
     SpriteRenderer sprite;
 
     public GameObject[] vidas;
