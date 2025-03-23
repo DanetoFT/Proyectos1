@@ -85,11 +85,19 @@ public class MosquitoController : MonoBehaviour
 
     public void Damage()
     {
-        playerController.vidaActual--;
-        Debug.Log(playerController.vidaActual);
-        playerAnim.SetTrigger("Damage");
+        if(playerController.vidaActual > 0)
+        {
+            playerController.vidaActual--;
+            Debug.Log(playerController.vidaActual);
+            playerAnim.SetTrigger("Damage");
 
-        playerController.UpdatedLifeBar(playerController.vidaActual);
+            playerController.UpdatedLifeBar(playerController.vidaActual);
+        }
+        else if (playerController.vidaActual <= 0)
+        {
+            playerController.vidaActual = 0;
+            playerController.UpdatedLifeBar(0);
+        }
     }
 
     public IEnumerator Damager()
@@ -136,7 +144,7 @@ public class MosquitoController : MonoBehaviour
             attacking = true;
             playerAnim = collision.gameObject.GetComponent<Animator>();
             //StartCoroutine(Damager());
-            InvokeRepeating("Damage", 1f, 1f);
+            InvokeRepeating("Damage", .2f, .9f);
         }
         else if(collision.gameObject.tag == "Bullet")
         {
@@ -159,15 +167,6 @@ public class MosquitoController : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             isDead = true;
-
-            /*Vector3 bulletPos = collision.transform.position;
-            bulletPos.z = 0;
-            Vector3 bulletRotation = bulletPos - transform.position;
-
-            Vector2 knockbackDirection = (transform.position - bulletPos).normalized;
-
-            rb.velocity = knockbackDirection * 15;*/
-            
             Death();
         }
     }

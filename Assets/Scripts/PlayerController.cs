@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey.Utils;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     Vector2 vecGravity;
     public float move;
 
+    public bool playerDead;
+
     public Transform playerTransform;
 
     SpriteRenderer sprite;
@@ -41,12 +43,13 @@ public class PlayerController : MonoBehaviour
         rbPlayer = GetComponent<Rigidbody2D>();
         animatorPlayer = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        playerDead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!aim.impulse)
+        if (!aim.impulse && !playerDead)
         {
             Movement();
         }
@@ -55,7 +58,9 @@ public class PlayerController : MonoBehaviour
 
         if (vidaActual <= 0)
         {
+            playerDead = true;
 
+            SceneManager.LoadScene("Game");
         }
     }
 

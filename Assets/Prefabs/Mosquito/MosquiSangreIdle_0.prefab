@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6471620626016351414}
   - component: {fileID: 2780915695382520706}
   - component: {fileID: 7708095565579276286}
+  - component: {fileID: 6033783079398276673}
+  - component: {fileID: 607969486392910278}
   m_Layer: 0
   m_Name: MosquiSangreIdle_0
   m_TagString: Untagged
@@ -73,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 842281205
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1365082744, guid: 95032e5b3579ea34785762146b367c91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -107,6 +109,56 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6033783079398276673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2296270893518289429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae4d0272b47a4245b9d7aba40365982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 3484192329595035751, guid: 4e0427c385fa73b4ba494d2f5219399d, type: 3}
+  bulletPos: {fileID: 5161662904003018856}
+  range: 0
+--- !u!58 &607969486392910278
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2296270893518289429}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.085405946, y: 0.03177917}
+  serializedVersion: 2
+  m_Radius: 0.8107923
 --- !u!1 &6123687761946846272
 GameObject:
   m_ObjectHideFlags: 0
