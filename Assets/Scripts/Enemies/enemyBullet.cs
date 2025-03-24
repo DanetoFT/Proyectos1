@@ -11,6 +11,8 @@ public class enemyBullet : MonoBehaviour
     private float timer;
     Animator animator;
 
+    public string[] damages;
+
     PlayerController playerController;
 
     // Start is called before the first frame update
@@ -48,15 +50,19 @@ public class enemyBullet : MonoBehaviour
     {
         playerController = other.GetComponent<PlayerController>();
 
-        if(other.gameObject.tag == "Player")
+        rb.velocity = Vector2.zero;
+        animator.SetTrigger("Destroy");
+        Invoke("Destroyer", .2f);
+
+        if (other.gameObject.tag == "Player")
         {
             playerController.vidaActual--;
             playerController.animatorPlayer.SetTrigger("Damage");
             playerController.UpdatedLifeBar(playerController.vidaActual);
-        }
 
-        rb.velocity = Vector2.zero;
-        animator.SetTrigger("Destroy");
-        Invoke("Destroyer", .2f);
+            int random = Random.Range(0, 4);
+
+            AudioController.Instance.PlaySFX(damages[random]);
+        }
     }
 }

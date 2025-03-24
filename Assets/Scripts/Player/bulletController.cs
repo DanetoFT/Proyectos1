@@ -11,6 +11,8 @@ public class bulletController : MonoBehaviour
     Rigidbody2D rb;
     public float force;
 
+    float timer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,12 @@ public class bulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+
+        if (timer > 10)
+        {
+            Destruir();
+        }
     }
 
     void Destruir()

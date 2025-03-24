@@ -15,6 +15,8 @@ public class trapController : MonoBehaviour
 
     public float tiempoCaida;
 
+    public string[] damages;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +34,17 @@ public class trapController : MonoBehaviour
             playerAnimator = collision.gameObject.GetComponent<Animator>();
             playerController.vidaActual -= 1;
 
+            int random = Random.Range(0, 4);
+
+            AudioController.Instance.PlaySFX(damages[random]);
+
             playerAnimator.SetTrigger("Damage");
 
             playerController.UpdatedLifeBar(playerController.vidaActual);
             Debug.Log(playerController.vidaActual);
             damaged = true;
+
+            AudioController.Instance.PlaySFX("Rope");
         }
     }
 
@@ -58,11 +66,14 @@ public class trapController : MonoBehaviour
         Invoke("CambioRb", tiempoCaida);
 
         animator.SetTrigger("Cuerda");
+
+        AudioController.Instance.PlaySFX("Rope");
     }
 
     public void CambioRb()
     {
         rb.bodyType = RigidbodyType2D.Static;
         damaged = true;
+        AudioController.Instance.PlaySFX("Trampa");
     }
 }

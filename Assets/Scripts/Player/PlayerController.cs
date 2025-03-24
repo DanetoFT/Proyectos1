@@ -28,15 +28,22 @@ public class PlayerController : MonoBehaviour
 
     public bool playerDead;
 
+    public bool isWalking;
+
     public Transform playerTransform;
 
     SpriteRenderer sprite;
 
     public GameObject[] vidas;
 
+    public static bool isPaused;
+
+    public GameObject menu;
+
     // Start is called before the first frame update
     void Start()
     {
+        isPaused = false;
         vecGravity = new Vector2(0, -Physics2D.gravity.y);
         isDead = false;
         vidaActual = vidaMax;
@@ -51,7 +58,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!aim.impulse && !playerDead)
+        if (!aim.impulse && !playerDead && !isPaused)
         {
             Movement();
         }
@@ -64,6 +71,38 @@ public class PlayerController : MonoBehaviour
 
             SceneManager.LoadScene("Game");
         }
+
+        if (isOnGround)
+        {
+            isWalking = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        {
+            menu.SetActive(true);
+            isPaused = true;
+            Time.timeScale = 0f;
+            AudioController.Instance.musicSource.Pause();
+            AudioController.Instance.sfxSource.Pause();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        {
+            menu.SetActive(false);
+            isPaused = false;
+            Time.timeScale = 1f;
+            AudioController.Instance.musicSource.UnPause();
+            AudioController.Instance.sfxSource.UnPause();
+        }
+    }
+
+    public void UnPause()
+    {
+        menu.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+
+        AudioController.Instance.musicSource.UnPause();
+        AudioController.Instance.sfxSource.UnPause();
     }
 
     void Movement()
@@ -134,6 +173,9 @@ public class PlayerController : MonoBehaviour
         //salto
         if (isOnGround)
         {
+            AudioController.Instance.PlaySFX("Salto");
+            isWalking = false;
+
             isOnGround = false;
             //rbPlayer.velocity += new Vector2(rbPlayer.velocity.x, jumpForce);
             rbPlayer.AddForce(new Vector2(rbPlayer.velocity.x, jumpForce), ForceMode2D.Impulse);
@@ -147,6 +189,11 @@ public class PlayerController : MonoBehaviour
         vidas[life].SetActive(false);
     }
 
+    public void PlayAudioClip(string s)
+    {
+        AudioController.Instance.PlaySFX(s);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Trap")
@@ -156,6 +203,11 @@ public class PlayerController : MonoBehaviour
             aim.impulse = false;
 
             animatorPlayer.SetBool("Jumping", false);
+
+            if (!isWalking)
+            {
+                AudioController.Instance.PlaySFX("Caida");
+            }
         }
     }
 

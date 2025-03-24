@@ -8,6 +8,8 @@ public class Respawn : MonoBehaviour
     public Transform respawn;
     PlayerController playerController;
 
+    public string[] damages;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +30,9 @@ public class Respawn : MonoBehaviour
         playerController.vidaActual--;
         playerController.animatorPlayer.SetTrigger("Damage");
         playerController.UpdatedLifeBar(playerController.vidaActual);
+
+        int random = Random.Range(0, 4);
+
+        AudioController.Instance.PlaySFX(damages[random]);
     }
 }

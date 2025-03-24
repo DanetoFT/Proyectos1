@@ -48,8 +48,11 @@ public class AimController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovimientoArma();
-        Shooting();
+        if (!PlayerController.isPaused)
+        {
+            MovimientoArma();
+            Shooting();
+        }
     }
 
     public void MovimientoArma()

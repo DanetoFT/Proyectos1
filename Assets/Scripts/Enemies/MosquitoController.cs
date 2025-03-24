@@ -23,6 +23,8 @@ public class MosquitoController : MonoBehaviour
 
     public bool isDead;
 
+    public string[] damages;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +87,10 @@ public class MosquitoController : MonoBehaviour
 
     public void Damage()
     {
+        int random = Random.Range(0, 4);
+
+        AudioController.Instance.PlaySFX(damages[random]);
+
         if(playerController.vidaActual > 0)
         {
             playerController.vidaActual--;
@@ -170,6 +176,14 @@ public class MosquitoController : MonoBehaviour
         {
             isDead = true;
             Death();
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+            attacking = true;
+            playerAnim = collision.gameObject.GetComponent<Animator>();
+            InvokeRepeating("Damage", .2f, .9f);
+
+            
         }
     }
 }

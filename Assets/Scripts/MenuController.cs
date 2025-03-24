@@ -23,4 +23,16 @@ public class MenuController : MonoBehaviour
 
         Application.Quit();
     }
+
+    public void Menu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("SampleScene");
+        AudioController.Instance.musicSource.Stop();
+    }
+
+    public void PlayAudioSound(string s)
+    {
+        AudioController.Instance.PlaySFX(s);
+    }
 }
