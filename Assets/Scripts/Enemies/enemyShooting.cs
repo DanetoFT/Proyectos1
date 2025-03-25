@@ -38,14 +38,15 @@ public class enemyShooting : MonoBehaviour
             float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, rot);
 
-            if(rot > 90f && rot > -90f)
+            if(rot > 90f && rot > 90f)
             {
-                sprite.flipY = true;
+                //sprite.flipY = true;
                 transform.localScale = new Vector2(1, -1);
             }
-            else if (rot < -90f && rot < 90f)
+            
+            if (rot < 90f && rot > -90f)
             {
-                sprite.flipY = false;
+                //sprite.flipY = false;
                 transform.localScale = new Vector2(1, 1);
             }
 
