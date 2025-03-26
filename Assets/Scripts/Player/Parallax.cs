@@ -24,11 +24,8 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (activator.playerNear)
-        {
-            float deltaX = (cameraTransform.position.x - previousCameraPosition.x) * distance;
-            transform.Translate(new Vector3(deltaX, 0, 0));
-            previousCameraPosition = cameraTransform.position;
-        }
+        float deltaX = (cameraTransform.position.x - previousCameraPosition.x) * distance;
+        transform.Translate(new Vector3(deltaX, 0, 0));
+        previousCameraPosition = cameraTransform.position;
     }
 }
