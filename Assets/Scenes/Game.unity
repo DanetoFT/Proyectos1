@@ -905,7 +905,7 @@ Transform:
   m_GameObject: {fileID: 109575873}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 185.1, y: -9.74, z: -10}
+  m_LocalPosition: {x: -34.28, y: 7.0199995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19893,7 +19893,7 @@ Transform:
   m_GameObject: {fileID: 1274700930}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 185.1, y: -9.74, z: -10}
+  m_LocalPosition: {x: -34.28, y: 7.0199995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27016,7 +27016,7 @@ Transform:
   m_GameObject: {fileID: 1957269661}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 185.1, y: -11.8, z: 0}
+  m_LocalPosition: {x: -34.28, y: 4.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28459,16 +28459,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1694220177}
   lines:
-  - Hola, explorador
-  - No se donde estamos, pero creo que has LLegado al final.
-  - Espero que hayas podido encontrar La cueva de los gatos.
-  - "\xBFQue como se eso? SenciLLo, no soy de este mundo."
-  - "Vengo de un Lejano Lugar LLamado \"Asset Store\". Te gustar\xEDa, hay mucha
-    gente como tu."
-  - "Aunque hay gente un poco rara que tiene poL\xEDgonos, a m\xED no me gustan un
-    peLo."
-  - Son como... tridimensionaLes, ew.
-  - Bueno, creo que me vueLvo a mi dimension, nos voLveremos a ver...
+  - Hi, explorer.
+  - I don't know where we are, but I think you've reached the end.
+  - I hope you were able to find The Cat Cave.
+  - How do I know that? Simple, I am not of this world.
+  - "I come from a faraway place called \u201CAsset Store\u201D. You would like it,
+    there are many people like you."
+  - Although some people are a bit weird and have polygons, I don't like them at
+    all.
+  - They're like... three-dimensional, ew.
+  - Well, I think I'm going back to my dimension, we'll see each other again...
   textSpeed: 0.1
   panel: {fileID: 1148046559}
   activate: 0
