@@ -43,6 +43,7 @@ public class trapController : MonoBehaviour
             playerController.UpdatedLifeBar(playerController.vidaActual);
             Debug.Log(playerController.vidaActual);
             damaged = true;
+            CambioRb();
 
             AudioController.Instance.PlaySFX("Rope");
         }
@@ -58,16 +59,18 @@ public class trapController : MonoBehaviour
 
             animator.SetTrigger("Cuerda");
 
+            AudioController.Instance.PlaySFX("Rope");
+
             isActivated = false;
         }
 
-        rb.bodyType = RigidbodyType2D.Dynamic;
+        /*rb.bodyType = RigidbodyType2D.Dynamic;
 
         Invoke("CambioRb", tiempoCaida);
 
         animator.SetTrigger("Cuerda");
 
-        AudioController.Instance.PlaySFX("Rope");
+        AudioController.Instance.PlaySFX("Rope");*/
     }
 
     public void CambioRb()
