@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier;
     Vector2 vecGravity;
     public float move;
+    float coyoteTime = 0.1f;
+    float coyoteTimeCounter;
 
     public bool playerDead;
 
@@ -65,6 +67,11 @@ public class PlayerController : MonoBehaviour
         GiroApuntado();
         //Shooting();
 
+        if (playerDead)
+        {
+            rbPlayer.velocity = Vector2.zero;
+        }
+
         if (vidaActual <= 0)
         {
             playerDead = true;
@@ -75,6 +82,12 @@ public class PlayerController : MonoBehaviour
         if (isOnGround)
         {
             isWalking = true;
+
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
@@ -141,6 +154,11 @@ public class PlayerController : MonoBehaviour
             Saltar();
         }
 
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            coyoteTimeCounter = 0;
+        }
+
         if (rbPlayer.velocity.y < 0)
         {
             rbPlayer.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
@@ -171,7 +189,7 @@ public class PlayerController : MonoBehaviour
     public void Saltar()
     {
         //salto
-        if (isOnGround)
+        if (coyoteTimeCounter > 0f)
         {
             AudioController.Instance.PlaySFX("Salto");
             isWalking = false;
