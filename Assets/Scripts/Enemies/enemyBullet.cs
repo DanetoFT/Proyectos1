@@ -43,6 +43,7 @@ public class enemyBullet : MonoBehaviour
 
     public void Destroyer()
     {
+        AudioController.Instance.PlaySFX("BulletD");
         Destroy(gameObject);
     }
 

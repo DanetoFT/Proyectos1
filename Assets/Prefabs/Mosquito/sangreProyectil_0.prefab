@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6475553666036412003}
   - component: {fileID: 7255321334751549937}
   - component: {fileID: -8118798103999393883}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: sangreProyectil_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

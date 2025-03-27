@@ -37,8 +37,8 @@ public class Cursor : MonoBehaviour
 
     void PlayerKiller()
     {
-        AudioController.Instance.PlayMusic("musicaMenu");
-        SceneManager.LoadScene("SampleScene");
+        AudioController.Instance.PlayMusic("Final");
+        SceneManager.LoadScene("MenuFinal");
     }
 
     void PlayClick()

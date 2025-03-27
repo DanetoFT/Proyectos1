@@ -66,6 +66,7 @@ public class enemyShooting : MonoBehaviour
     void Shoot()
     {
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
+        AudioController.Instance.PlaySFX("Spit");
     }
 
     void Destruir()
