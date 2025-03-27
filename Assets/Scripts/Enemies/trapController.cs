@@ -51,7 +51,7 @@ public class trapController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isActivated)
+        if (!isActivated)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
 
@@ -61,7 +61,7 @@ public class trapController : MonoBehaviour
 
             AudioController.Instance.PlaySFX("Rope");
 
-            isActivated = false;
+            isActivated = true;
         }
 
         /*rb.bodyType = RigidbodyType2D.Dynamic;

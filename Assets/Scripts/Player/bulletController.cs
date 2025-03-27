@@ -44,6 +44,11 @@ public class bulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Invoke("Destruir", .5f);
+        Invoke("Destruir", .1f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Invoke("Destruir", .1f);
     }
 }
