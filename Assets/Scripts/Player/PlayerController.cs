@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public static bool isPaused;
 
     public GameObject menu;
+    public GameObject muerte;
 
     // Start is called before the first frame update
     void Start()
@@ -76,7 +77,11 @@ public class PlayerController : MonoBehaviour
         {
             playerDead = true;
 
-            SceneManager.LoadScene("Game");
+            muerte.gameObject.SetActive(true);
+            //isPaused = true;
+            //Time.timeScale = 0f;
+            AudioController.Instance.musicSource.Stop();
+            AudioController.Instance.sfxSource.Stop();
         }
 
         if (isOnGround)
@@ -106,6 +111,15 @@ public class PlayerController : MonoBehaviour
             AudioController.Instance.musicSource.UnPause();
             AudioController.Instance.sfxSource.UnPause();
         }
+    }
+
+    public void CambioEscena()
+    {
+        playerDead = false;
+        //Time.timeScale = 1f;
+        isPaused = false;
+        AudioController.Instance.musicSource.Stop();
+        SceneManager.LoadScene("Game");
     }
 
     public void UnPause()

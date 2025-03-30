@@ -81,7 +81,7 @@ public class MosquitoController : MonoBehaviour
         anim.SetTrigger("Attack");
         chase = false;
         rb.bodyType = RigidbodyType2D.Static;
-        cCollider.isTrigger = true;
+        //cCollider.isTrigger = true;
         transform.position = new Vector2(player.transform.position.x +1.5f, player.transform.position.y +1.3f);
     }
 
@@ -145,7 +145,7 @@ public class MosquitoController : MonoBehaviour
         Invoke("Destruir", .3f);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -158,32 +158,31 @@ public class MosquitoController : MonoBehaviour
         {
             isDead = true;
 
-            /*Vector3 bulletPos = collision.transform.position;
+            Vector3 bulletPos = collision.transform.position;
             bulletPos.z = 0;
             Vector3 bulletRotation = bulletPos - transform.position;
 
             Vector2 knockbackDirection = (transform.position - bulletPos).normalized;
 
             rb.velocity = knockbackDirection * 15;
-            */
+            
             Death();
         }
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.tag == "Bullet")
         {
             isDead = true;
             Death();
         }
-        else if (collision.gameObject.tag == "Player")
+        else if (collision.gameObject.tag == "Player" && !attacking)
         {
             attacking = true;
             playerAnim = collision.gameObject.GetComponent<Animator>();
             InvokeRepeating("Damage", .2f, .9f);
-
-            
         }
     }
 }
